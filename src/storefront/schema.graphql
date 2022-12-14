@@ -1,0 +1,13 @@
+type MenuItem {
+    id: ID!
+    price: Int!
+}
+
+type Storefront {
+    id: ID!
+    menu: [MenuItem!]!
+}
+
+type Query {
+    storefronts: [Storefront!]!
+}
