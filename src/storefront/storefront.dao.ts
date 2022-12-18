@@ -15,7 +15,17 @@ export class StorefrontDao {
     //findByArea(){}
 
     createStorefront(storefrontDto: StorefrontDto): Storefront{
+        const storefrontId: number = this.storefronts.length + 1;
+        const {menu, address, name, imageUrl, zipCodes, couponCodes} = storefrontDto;
         const storefront: Storefront = new Storefront();
+        storefront.id = storefrontId.toString();
+        storefront.menu = menu;
+        storefront.address = address;
+        storefront.name = name;
+        storefront.imageUrl = imageUrl;
+        storefront.zipCodes = zipCodes;
+        storefront.couponCodes = couponCodes;
+        this.storefronts.push(storefront);
         return storefront;
     }
 }

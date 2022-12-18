@@ -22,8 +22,12 @@ export class MenuItem {
     price: number;
 }
 
-export class CouponCode {
-    percentage: CouponCodePercentage;
+export class CouponCodePercentageString {
+    percentage: string;
+}
+
+export class CouponCodePercentageInt {
+    percentage: number;
 }
 
 export class Storefront {
@@ -55,5 +59,5 @@ export class Order {
     couponCodes: CouponCode[];
 }
 
-export type CouponCodePercentage = Int | String;
+export type CouponCode = CouponCodePercentageInt | CouponCodePercentageString;
 type Nullable<T> = T | null;

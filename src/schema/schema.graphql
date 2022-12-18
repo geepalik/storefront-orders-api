@@ -4,11 +4,15 @@ type MenuItem {
     price: Int!
 }
 
-union CouponCodePercentage = Int | String
-
-type CouponCode {
-    percentage: CouponCodePercentage!
+type CouponCodePercentageString {
+    percentage: String!
 }
+
+type CouponCodePercentageInt {
+    percentage: Int!
+}
+
+union CouponCode = CouponCodePercentageInt | CouponCodePercentageString
 
 type Storefront {
     id: ID!
