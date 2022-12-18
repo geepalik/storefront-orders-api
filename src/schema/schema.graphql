@@ -1,0 +1,52 @@
+#Storefront data begin
+type MenuItem {
+    id: ID!
+    price: Int!
+}
+
+union CouponCodePercentage = Int | String
+
+type CouponCode {
+    percentage: CouponCodePercentage!
+}
+
+type Storefront {
+    id: ID!
+    menu: [MenuItem!]!
+    address: String!
+    name: String!
+    imageUrl: String!
+    zipCodes: [String!]!
+    couponCodes: [CouponCode!]!
+}
+
+type Query {
+    storefronts: [Storefront!]!
+}
+
+input NewStorefront {
+    menu: [MenuItem!]!
+    address: String!
+    name: String!
+    imageUrl: String!
+    zipCodes: [String!]!
+    couponCodes: [CouponCode!]!
+}
+
+type Mutation {
+    createStorefront(input: NewStorefront!): Storefront!
+}
+#Storefront data end
+
+#Order data begin
+type UserOrderInfo {
+    name: String!
+    address: String!
+}
+
+type Order {
+    customerInformation: UserOrderInfo!
+    associatedStorefront: [Storefront!]!
+    couponCodes: [CouponCode!]!
+}
+#order data end
