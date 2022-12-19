@@ -56,7 +56,7 @@ type UserOrderInfo {
 
 type Order {
     customerInformation: UserOrderInfo!
-    associatedStorefront: [Storefront!]!
+    associatedStorefront: Storefront!
     couponCodes: [CouponCode!]!
 }
 #order data end
