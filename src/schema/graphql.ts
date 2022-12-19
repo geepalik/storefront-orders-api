@@ -9,12 +9,10 @@
 /* eslint-disable */
 
 export class NewStorefront {
-    menu: MenuItem[];
     address: string;
     name: string;
     imageUrl: string;
     zipCodes: string[];
-    couponCodes: CouponCode[];
 }
 
 export class MenuItem {

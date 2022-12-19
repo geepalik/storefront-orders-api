@@ -16,15 +16,13 @@ export class StorefrontDao {
 
     createStorefront(storefrontDto: StorefrontDto): Storefront{
         const storefrontId: number = this.storefronts.length + 1;
-        const {menu, address, name, imageUrl, zipCodes, couponCodes} = storefrontDto;
+        const {address, name, imageUrl, zipCodes} = storefrontDto;
         const storefront: Storefront = new Storefront();
         storefront.id = storefrontId.toString();
-        storefront.menu = menu;
         storefront.address = address;
         storefront.name = name;
         storefront.imageUrl = imageUrl;
         storefront.zipCodes = zipCodes;
-        storefront.couponCodes = couponCodes;
         this.storefronts.push(storefront);
         return storefront;
     }

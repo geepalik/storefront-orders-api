@@ -29,12 +29,10 @@ type Query {
 }
 
 input NewStorefront {
-    menu: [MenuItem!]!
     address: String!
     name: String!
     imageUrl: String!
     zipCodes: [String!]!
-    couponCodes: [CouponCode!]!
 }
 
 type Mutation {
