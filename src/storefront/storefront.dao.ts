@@ -1,6 +1,7 @@
 /* eslint-disable prettier/prettier */
 import { Injectable } from '@nestjs/common';
 import { Storefront } from 'src/schema/graphql';
+import { GetStorefrontByAreaDto } from './dto/get-storefront-by-area.dto';
 import { StorefrontDto } from './dto/storefront.dto';
 
 @Injectable()
@@ -11,8 +12,10 @@ export class StorefrontDao {
         return this.storefronts;
     }
 
-    //pass zipcode
-    //findByArea(){}
+    getStorefrontByArea(getStorefrontByArea: GetStorefrontByAreaDto): Storefront[] {
+        const {zipCode} = getStorefrontByArea;
+        return this.storefronts.filter(storefront => storefront.zipCodes.includes(zipCode));
+    }
 
     createStorefront(storefrontDto: StorefrontDto): Storefront{
         const storefrontId: number = this.storefronts.length + 1;

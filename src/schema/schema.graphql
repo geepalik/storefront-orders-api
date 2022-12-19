@@ -28,6 +28,14 @@ type Query {
     storefronts: [Storefront!]!
 }
 
+input GetStorefrontByArea {
+    zipCode: String!
+}
+
+type Query {
+    getStorefrontByArea(input: GetStorefrontByArea!): [Storefront!]!
+}
+
 input NewStorefront {
     address: String!
     name: String!

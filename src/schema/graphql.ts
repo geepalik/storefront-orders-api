@@ -8,6 +8,10 @@
 /* tslint:disable */
 /* eslint-disable */
 
+export class GetStorefrontByArea {
+    zipCode: string;
+}
+
 export class NewStorefront {
     address: string;
     name: string;
@@ -40,6 +44,8 @@ export class Storefront {
 
 export abstract class IQuery {
     abstract storefronts(): Storefront[] | Promise<Storefront[]>;
+
+    abstract getStorefrontByArea(input: GetStorefrontByArea): Storefront[] | Promise<Storefront[]>;
 }
 
 export abstract class IMutation {
