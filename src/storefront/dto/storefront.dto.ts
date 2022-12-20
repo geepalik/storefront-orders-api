@@ -11,4 +11,6 @@ export class StorefrontDto extends NewStorefront {
     imageUrl: string;
     @IsNotEmpty()
     zipCodes: string[];
+    @IsNotEmpty()
+    supportedCouponCodes: string[];
 }

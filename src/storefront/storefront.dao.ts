@@ -25,7 +25,7 @@ export class StorefrontDao {
 
     createStorefront(storefrontDto: StorefrontDto): Storefront{
         const storefrontId: number = this.storefronts.length + 1;
-        const {address, name, imageUrl, zipCodes} = storefrontDto;
+        const {address, name, imageUrl, zipCodes, supportedCouponCodes} = storefrontDto;
         const storefront: Storefront = new Storefront();
         storefront.id = storefrontId.toString();
         storefront.address = address;
@@ -33,6 +33,7 @@ export class StorefrontDao {
         storefront.imageUrl = imageUrl;
         storefront.zipCodes = zipCodes;
         storefront.menu = this.addStorefrontDefaultMenuData();
+        storefront.couponCodes = supportedCouponCodes;
         this.storefronts.push(storefront);
         return storefront;
     }

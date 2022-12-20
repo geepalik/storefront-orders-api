@@ -5,19 +5,10 @@ type MenuItem {
     price: Int!
 }
 
-type CouponCodePercentageString {
-    percentage: String!
-}
-
-type CouponCodePercentageInt {
-    percentage: Int!
-}
-
-union CouponCodePercentage = CouponCodePercentageInt | CouponCodePercentageString
-
 type CouponCodeItem {
     id: ID!
-    percentage: CouponCodePercentage!
+    type: String!
+    value: Int
 }
 
 type Storefront {
@@ -27,7 +18,7 @@ type Storefront {
     name: String!
     imageUrl: String!
     zipCodes: [String!]!
-    couponCodes: [CouponCodeItem!]!
+    couponCodes: [String!]!
 }
 
 type Query {
@@ -55,6 +46,7 @@ input NewStorefront {
     name: String!
     imageUrl: String!
     zipCodes: [String!]!
+    supportedCouponCodes: [String!]!
 }
 
 type Mutation {
@@ -69,8 +61,21 @@ type UserOrderInfo {
 }
 
 type Order {
+    id: ID!
     customerInformation: UserOrderInfo!
-    associatedStorefront: [Storefront!]!
-    couponCodes: [CouponCodeItem!]!
+    associatedStorefront: Storefront!
+    couponCodes: [String!]!
 }
+
+input NewOrder {
+    customerInfoName: String!
+    customerInfoAdress: String!
+    associatedStorefront: String!
+    couponCodes: [String!]!
+}
+
+type Mutation {
+    createOrder(input: NewOrder!): Order!
+}
+
 #order data end

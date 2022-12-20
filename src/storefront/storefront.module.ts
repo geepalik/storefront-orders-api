@@ -5,5 +5,6 @@ import { StorefrontDao } from './storefront.dao';
 
 @Module({
   providers: [StorefrontDao, StorefrontService, StorefrontResolver],
+  exports: [StorefrontService],
 })
 export class StorefrontModule {}

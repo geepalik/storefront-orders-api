@@ -21,6 +21,14 @@ export class NewStorefront {
     name: string;
     imageUrl: string;
     zipCodes: string[];
+    supportedCouponCodes: string[];
+}
+
+export class NewOrder {
+    customerInfoName: string;
+    customerInfoAdress: string;
+    associatedStorefront: string;
+    couponCodes: string[];
 }
 
 export class MenuItem {
@@ -29,17 +37,10 @@ export class MenuItem {
     price: number;
 }
 
-export class CouponCodePercentageString {
-    percentage: string;
-}
-
-export class CouponCodePercentageInt {
-    percentage: number;
-}
-
 export class CouponCodeItem {
     id: string;
-    percentage: CouponCodePercentage;
+    type: string;
+    value?: Nullable<number>;
 }
 
 export class Storefront {
@@ -49,7 +50,7 @@ export class Storefront {
     name: string;
     imageUrl: string;
     zipCodes: string[];
-    couponCodes: CouponCodeItem[];
+    couponCodes: string[];
 }
 
 export abstract class IQuery {
@@ -62,6 +63,8 @@ export abstract class IQuery {
 
 export abstract class IMutation {
     abstract createStorefront(input: NewStorefront): Storefront | Promise<Storefront>;
+
+    abstract createOrder(input: NewOrder): Order | Promise<Order>;
 }
 
 export class UserOrderInfo {
@@ -70,10 +73,10 @@ export class UserOrderInfo {
 }
 
 export class Order {
+    id: string;
     customerInformation: UserOrderInfo;
-    associatedStorefront: Storefront[];
-    couponCodes: CouponCodeItem[];
+    associatedStorefront: Storefront;
+    couponCodes: string[];
 }
 
-export type CouponCodePercentage = CouponCodePercentageInt | CouponCodePercentageString;
 type Nullable<T> = T | null;
