@@ -2,6 +2,7 @@
 import { Injectable } from '@nestjs/common';
 import { Storefront } from 'src/schema/graphql';
 import { GetStorefrontByAreaDto } from './dto/get-storefront-by-area.dto';
+import { GetStorefrontByIdDto } from './dto/get-storefront-by-id.dto';
 import { StorefrontDto } from './dto/storefront.dto';
 import { StorefrontDao } from './storefront.dao';
 
@@ -11,6 +12,10 @@ export class StorefrontService {
 
     getAllStorefronts(): Storefront[]{
         return this.storefrontDao.getAllStorefronts();
+    }
+
+    getStorefrontById(getStorefrontByIdDto: GetStorefrontByIdDto): Storefront{
+        return this.storefrontDao.getStorefrontById(getStorefrontByIdDto);
     }
 
     getStorefrontByArea(getStorefrontByArea: GetStorefrontByAreaDto): Storefront[]{

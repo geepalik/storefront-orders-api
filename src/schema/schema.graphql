@@ -1,6 +1,7 @@
-#Storefront data begin
+#Storefront schema begin
 type MenuItem {
     id: ID!
+    name: String!
     price: Int!
 }
 
@@ -12,7 +13,12 @@ type CouponCodePercentageInt {
     percentage: Int!
 }
 
-union CouponCode = CouponCodePercentageInt | CouponCodePercentageString
+union CouponCodePercentage = CouponCodePercentageInt | CouponCodePercentageString
+
+type CouponCodeItem {
+    id: ID!
+    percentage: CouponCodePercentage!
+}
 
 type Storefront {
     id: ID!
@@ -21,7 +27,7 @@ type Storefront {
     name: String!
     imageUrl: String!
     zipCodes: [String!]!
-    couponCodes: [CouponCode!]!
+    couponCodes: [CouponCodeItem!]!
 }
 
 type Query {
@@ -36,6 +42,14 @@ type Query {
     getStorefrontByArea(input: GetStorefrontByArea!): [Storefront!]!
 }
 
+input GetStorefrontById {
+    id: ID!
+}
+
+type Query {
+    getStorefrontById(input: GetStorefrontById!): Storefront!
+}
+
 input NewStorefront {
     address: String!
     name: String!
@@ -46,9 +60,9 @@ input NewStorefront {
 type Mutation {
     createStorefront(input: NewStorefront!): Storefront!
 }
-#Storefront data end
+#Storefront schema end
 
-#Order data begin
+#Order schema begin
 type UserOrderInfo {
     name: String!
     address: String!
@@ -57,6 +71,6 @@ type UserOrderInfo {
 type Order {
     customerInformation: UserOrderInfo!
     associatedStorefront: [Storefront!]!
-    couponCodes: [CouponCode!]!
+    couponCodes: [CouponCodeItem!]!
 }
 #order data end
