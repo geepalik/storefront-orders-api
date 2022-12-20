@@ -1,7 +1,8 @@
 /* eslint-disable prettier/prettier */
 import { Injectable } from '@nestjs/common';
-import { Storefront } from 'src/schema/graphql';
+import { MenuItem, Storefront } from 'src/schema/graphql';
 import { GetStorefrontByAreaDto } from './dto/get-storefront-by-area.dto';
+import { GetStorefrontByIdDto } from './dto/get-storefront-by-id.dto';
 import { StorefrontDto } from './dto/storefront.dto';
 
 @Injectable()
@@ -17,6 +18,11 @@ export class StorefrontDao {
         return this.storefronts.filter(storefront => storefront.zipCodes.includes(zipCode));
     }
 
+    getStorefrontById(getStorefrontByIdDto: GetStorefrontByIdDto): Storefront{
+        const { id } = getStorefrontByIdDto;
+        return this.storefronts.filter(storefront => storefront.id === id)[0];
+    }
+
     createStorefront(storefrontDto: StorefrontDto): Storefront{
         const storefrontId: number = this.storefronts.length + 1;
         const {address, name, imageUrl, zipCodes} = storefrontDto;
@@ -26,7 +32,23 @@ export class StorefrontDao {
         storefront.name = name;
         storefront.imageUrl = imageUrl;
         storefront.zipCodes = zipCodes;
+        storefront.menu = this.addStorefrontDefaultMenuData();
         this.storefronts.push(storefront);
         return storefront;
+    }
+
+    private addStorefrontDefaultMenuData(): MenuItem[]{
+        return [
+            {
+                id: '1',
+                name: 'Soup',
+                price: 10
+            },
+            {
+                id: '2',
+                name: 'Salad',
+                price: 20
+            },
+        ]
     }
 }

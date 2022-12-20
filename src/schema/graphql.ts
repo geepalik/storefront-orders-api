@@ -12,6 +12,10 @@ export class GetStorefrontByArea {
     zipCode: string;
 }
 
+export class GetStorefrontById {
+    id: string;
+}
+
 export class NewStorefront {
     address: string;
     name: string;
@@ -21,6 +25,7 @@ export class NewStorefront {
 
 export class MenuItem {
     id: string;
+    name: string;
     price: number;
 }
 
@@ -32,6 +37,11 @@ export class CouponCodePercentageInt {
     percentage: number;
 }
 
+export class CouponCodeItem {
+    id: string;
+    percentage: CouponCodePercentage;
+}
+
 export class Storefront {
     id: string;
     menu: MenuItem[];
@@ -39,13 +49,15 @@ export class Storefront {
     name: string;
     imageUrl: string;
     zipCodes: string[];
-    couponCodes: CouponCode[];
+    couponCodes: CouponCodeItem[];
 }
 
 export abstract class IQuery {
     abstract storefronts(): Storefront[] | Promise<Storefront[]>;
 
     abstract getStorefrontByArea(input: GetStorefrontByArea): Storefront[] | Promise<Storefront[]>;
+
+    abstract getStorefrontById(input: GetStorefrontById): Storefront | Promise<Storefront>;
 }
 
 export abstract class IMutation {
@@ -60,8 +72,8 @@ export class UserOrderInfo {
 export class Order {
     customerInformation: UserOrderInfo;
     associatedStorefront: Storefront[];
-    couponCodes: CouponCode[];
+    couponCodes: CouponCodeItem[];
 }
 
-export type CouponCode = CouponCodePercentageInt | CouponCodePercentageString;
+export type CouponCodePercentage = CouponCodePercentageInt | CouponCodePercentageString;
 type Nullable<T> = T | null;
