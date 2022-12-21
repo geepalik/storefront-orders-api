@@ -1,6 +1,6 @@
 /* eslint-disable prettier/prettier */
 import { Injectable } from '@nestjs/common';
-import { MenuItem, Storefront } from 'src/schema/graphql';
+import { Menu, Storefront } from '../schema/graphql';
 import { GetStorefrontByAreaDto } from './dto/get-storefront-by-area.dto';
 import { GetStorefrontByIdDto } from './dto/get-storefront-by-id.dto';
 import { StorefrontDto } from './dto/storefront.dto';
@@ -23,7 +23,13 @@ export class StorefrontDao {
         return this.storefronts.filter(storefront => storefront.id === id)[0];
     }
 
-    createStorefront(storefrontDto: StorefrontDto): Storefront{
+    getStorefrontMenu(getStorefrontByIdDto: GetStorefrontByIdDto): Menu{
+        const { id } = getStorefrontByIdDto;
+        const storefront = this.storefronts.filter(storefront => storefront.id === id)[0];
+        return storefront.menu;
+    }
+
+    createStorefront(storefrontDto: StorefrontDto, menu: Menu): Storefront{
         const storefrontId: number = this.storefronts.length + 1;
         const {address, name, imageUrl, zipCodes, supportedCouponCodes} = storefrontDto;
         const storefront: Storefront = new Storefront();
@@ -32,24 +38,9 @@ export class StorefrontDao {
         storefront.name = name;
         storefront.imageUrl = imageUrl;
         storefront.zipCodes = zipCodes;
-        storefront.menu = this.addStorefrontDefaultMenuData();
+        storefront.menu = menu;
         storefront.couponCodes = supportedCouponCodes;
         this.storefronts.push(storefront);
         return storefront;
-    }
-
-    private addStorefrontDefaultMenuData(): MenuItem[]{
-        return [
-            {
-                id: '1',
-                name: 'Soup',
-                price: 10
-            },
-            {
-                id: '2',
-                name: 'Salad',
-                price: 20
-            },
-        ]
     }
 }

@@ -1,8 +1,8 @@
 /* eslint-disable prettier/prettier */
 import { IsNotEmpty } from "class-validator";
-import { GetStorefrontById } from "src/schema/graphql";
+import { GetStorefrontMenu } from "src/schema/graphql";
 
-export class GetStorefrontByIdDto extends GetStorefrontById {
+export class GetStorefrontByIdDto extends GetStorefrontMenu {
     @IsNotEmpty()
     id: string;
 }

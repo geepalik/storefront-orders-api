@@ -1,4 +1,9 @@
 #Storefront schema begin
+type Menu {
+    id: ID!
+    items: [MenuItem!]!
+}
+
 type MenuItem {
     id: ID!
     name: String!
@@ -8,12 +13,12 @@ type MenuItem {
 type CouponCodeItem {
     id: ID!
     type: String!
-    value: Int
+    value: Int!
 }
 
 type Storefront {
     id: ID!
-    menu: [MenuItem!]!
+    menu: Menu!
     address: String!
     name: String!
     imageUrl: String!
@@ -33,18 +38,19 @@ type Query {
     getStorefrontByArea(input: GetStorefrontByArea!): [Storefront!]!
 }
 
-input GetStorefrontById {
+input GetStorefrontMenu {
     id: ID!
 }
 
 type Query {
-    getStorefrontById(input: GetStorefrontById!): Storefront!
+    getStorefrontMenu(input: GetStorefrontMenu!): Storefront!
 }
 
 input NewStorefront {
     address: String!
     name: String!
     imageUrl: String!
+    menuId: String!
     zipCodes: [String!]!
     supportedCouponCodes: [String!]!
 }

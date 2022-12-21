@@ -3,6 +3,7 @@ import { Resolver, Query, Args, Mutation } from '@nestjs/graphql';
 import { Storefront } from 'src/schema/graphql';
 import { GetStorefrontByAreaDto } from './dto/get-storefront-by-area.dto';
 import { GetStorefrontByIdDto } from './dto/get-storefront-by-id.dto';
+import { GetStorefrontMenuDto } from './dto/get-storefront-menu.dto';
 import { StorefrontDto } from './dto/storefront.dto';
 import { StorefrontService } from './storefront.service';
 
@@ -21,8 +22,8 @@ export class StorefrontResolver {
     }
 
     @Query()
-    getStorefrontById(@Args('input') args: GetStorefrontByIdDto): Storefront{
-        return this.storefrontService.getStorefrontById(args);
+    getStorefrontMenu(@Args('input') args: GetStorefrontByIdDto): Promise<GetStorefrontMenuDto>{
+        return this.storefrontService.getStorefrontMenu(args);
     }
 
     @Mutation('createStorefront')

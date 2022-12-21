@@ -12,7 +12,7 @@ export class GetStorefrontByArea {
     zipCode: string;
 }
 
-export class GetStorefrontById {
+export class GetStorefrontMenu {
     id: string;
 }
 
@@ -20,6 +20,7 @@ export class NewStorefront {
     address: string;
     name: string;
     imageUrl: string;
+    menuId: string;
     zipCodes: string[];
     supportedCouponCodes: string[];
 }
@@ -31,6 +32,11 @@ export class NewOrder {
     couponCodes: string[];
 }
 
+export class Menu {
+    id: string;
+    items: MenuItem[];
+}
+
 export class MenuItem {
     id: string;
     name: string;
@@ -40,12 +46,12 @@ export class MenuItem {
 export class CouponCodeItem {
     id: string;
     type: string;
-    value?: Nullable<number>;
+    value: number;
 }
 
 export class Storefront {
     id: string;
-    menu: MenuItem[];
+    menu: Menu;
     address: string;
     name: string;
     imageUrl: string;
@@ -58,7 +64,7 @@ export abstract class IQuery {
 
     abstract getStorefrontByArea(input: GetStorefrontByArea): Storefront[] | Promise<Storefront[]>;
 
-    abstract getStorefrontById(input: GetStorefrontById): Storefront | Promise<Storefront>;
+    abstract getStorefrontMenu(input: GetStorefrontMenu): Storefront | Promise<Storefront>;
 }
 
 export abstract class IMutation {

@@ -10,6 +10,8 @@ export class StorefrontDto extends NewStorefront {
     @IsNotEmpty()
     imageUrl: string;
     @IsNotEmpty()
+    menuId: string;
+    @IsNotEmpty()
     zipCodes: string[];
     @IsNotEmpty()
     supportedCouponCodes: string[];
