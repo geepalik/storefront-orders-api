@@ -14,6 +14,7 @@ type CouponCodeItem {
     id: ID!
     type: String!
     value: Int!
+    code: String!
 }
 
 type Storefront {
@@ -82,6 +83,14 @@ input NewOrder {
 
 type Mutation {
     createOrder(input: NewOrder!): Order!
+}
+
+input CalculateOrderTotals {
+    orderId: String!
+}
+
+type Query {
+    calculateOrderTotals(input: CalculateOrderTotals!): Float!
 }
 
 #order data end

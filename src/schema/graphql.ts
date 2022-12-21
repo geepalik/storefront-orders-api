@@ -32,6 +32,10 @@ export class NewOrder {
     couponCodes: string[];
 }
 
+export class CalculateOrderTotals {
+    orderId: string;
+}
+
 export class Menu {
     id: string;
     items: MenuItem[];
@@ -47,6 +51,7 @@ export class CouponCodeItem {
     id: string;
     type: string;
     value: number;
+    code: string;
 }
 
 export class Storefront {
@@ -65,6 +70,8 @@ export abstract class IQuery {
     abstract getStorefrontByArea(input: GetStorefrontByArea): Storefront[] | Promise<Storefront[]>;
 
     abstract getStorefrontMenu(input: GetStorefrontMenu): Storefront | Promise<Storefront>;
+
+    abstract calculateOrderTotals(input: CalculateOrderTotals): number | Promise<number>;
 }
 
 export abstract class IMutation {
