@@ -1,6 +1,6 @@
 /* eslint-disable prettier/prettier */
 import { Injectable } from '@nestjs/common';
-import { Order, Storefront } from 'src/schema/graphql';
+import { Order, Storefront } from '../schema/graphql';
 import { OrderDto } from './dto/order.dto';
 
 @Injectable()

@@ -2,7 +2,7 @@
 import { Injectable } from '@nestjs/common';
 import { Order, Storefront } from 'src/schema/graphql';
 import { GetStorefrontByIdDto } from 'src/storefront/dto/get-storefront-by-id.dto';
-import { StorefrontService } from 'src/storefront/storefront.service';
+import { StorefrontService } from '../storefront/storefront.service';
 import { OrderDto } from './dto/order.dto';
 import { OrderDao } from './order.dao';
 
