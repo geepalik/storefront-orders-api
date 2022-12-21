@@ -49,7 +49,7 @@ mutation createStorefront {
 }
 ```
 
-Get All Storefront:
+Get All Storefronts:
 ```graphql
 query storefronts {
  storefronts {    
@@ -69,5 +69,86 @@ query storefronts {
       }
   }
 }
+```
 
+Get Storefront By Area:
+```graphql
+query storefronts {
+ getStorefrontByArea(
+    input: { zipCode: "15236"}
+  ) {    
+    id
+    address
+    name
+  	imageUrl
+  	zipCodes
+    menu {
+        id
+      	items {
+          id
+          name
+          price
+        }
+      }
+  }
+}
+```
+
+Get Storefront Menu:
+```graphql
+query storefronts {
+ getStorefrontMenu(
+    input: { id: "1"}
+  ) {    
+    menu {
+        id
+      	items {
+          id
+          name
+          price
+        }
+      }
+  }
+}
+```
+
+Create Order:
+```graphql
+mutation createOrder {
+  createOrder(
+    input: { customerInfoName: "Gil", customerInfoAdress: "Jabotinsky 2", associatedStorefront: "1", couponCodes: ["1", "2"] }
+  ) {
+    id
+    customerInformation {
+      name
+      address
+    }
+    associatedStorefront {
+      id
+      address
+      name
+      imageUrl
+      zipCodes
+      couponCodes
+      menu {
+        id
+      	items {
+          id
+          name
+          price
+        }
+      }
+    }
+  	couponCodes
+  }
+}
+```
+
+Calculate Order Totals:
+```graphql
+query orders {
+ calculateOrderTotals(
+    input: { orderId: "1"}
+  )
+}
 ```
