@@ -9,6 +9,7 @@ Clone repository in target path
 Create Docker image
 -----
 In the project root directory run this to create image:
+-----
     $ docker build -t gil-storefront-order-api . 
 
 And then to run the container:
