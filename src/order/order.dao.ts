@@ -20,4 +20,6 @@ export class OrderDao {
         order.couponCodes = couponCodes;
         return order;
     }
+
+    calculateOrderTotals(orderId: string){}
 }
