@@ -14,7 +14,7 @@ In the project root directory run this to create image:
 
 And then to run the container:
 -----
-    docker run -p81:3000 gil-storefront-order-api
+    docker run -p80:3000 gil-storefront-order-api
 
 Open browser and go to URL:
 -----
