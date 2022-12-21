@@ -22,8 +22,8 @@ Open browser and go to URL:
 
 To open the GraphQL playground
 
-Create Storefront:
------
+#Create Storefront:
+```graphql
 mutation createStorefront {
   createStorefront(
     input: {menuId: "1", address: "Address 2", name: "Name 2", imageUrl: "https://you.tube/vid2", zipCodes: ["15236", "14752"], supportedCouponCodes: ["1","2"] }
@@ -44,3 +44,4 @@ mutation createStorefront {
     couponCodes
   }
 }
+```
