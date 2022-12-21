@@ -8,6 +8,9 @@ export class OrderDao {
     private readonly orders: Order[] = [];
 
     createOrder(orderDto: OrderDto, storefrontData: Storefront): Order{
+        if(!this.checkIfOrderCouponsAllowed(storefrontData.couponCodes, orderDto.couponCodes)){
+            throw new Error("Order contains coupons that are not allowed for this storefront");
+        }
         const orderId: number = this.orders.length + 1;
         const {customerInfoName, customerInfoAdress, couponCodes} = orderDto;
         const order: Order = new Order();
@@ -22,4 +25,8 @@ export class OrderDao {
     }
 
     calculateOrderTotals(orderId: string){}
+    
+    private checkIfOrderCouponsAllowed(storefrontCoupons: string[], orderCoupons: string[]): boolean{
+        return orderCoupons.every(coupon => storefrontCoupons.includes(coupon));
+    }
 }
