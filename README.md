@@ -22,7 +22,10 @@ Open browser and go to URL:
 
 To open the GraphQL playground
 
-#Create Storefront:
+Queries and Mutations:
+-----
+
+Create Storefront:
 ```graphql
 mutation createStorefront {
   createStorefront(
@@ -44,4 +47,27 @@ mutation createStorefront {
     couponCodes
   }
 }
+```
+
+Get All Storefront:
+```graphql
+query storefronts {
+ storefronts {    
+    id
+    address
+    name
+  	imageUrl
+  	zipCodes
+  	couponCodes
+  	menu {
+        id
+      	items {
+          id
+          name
+          price
+        }
+      }
+  }
+}
+
 ```
